@@ -19,6 +19,15 @@ from yolor.models.models import *
 from yolor.utils.datasets import *
 from yolor.utils.general import *
 
+import sys
+from pathlib import Path
+
+
+FILE = Path(__file__).resolve()
+ROOT = FILE.parents[0]  
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))  
+    
 def load_classes(path):
     # Loads *.names file at 'path'
     with open(path, 'r') as f:

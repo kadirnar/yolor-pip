@@ -21,7 +21,6 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 import yolor.test as test  # import test.py to get mAP after each epoch
-#from models.yolo import Model
 from yolor.models.models import *
 from yolor.utils.autoanchor import check_anchors
 from yolor.utils.datasets import create_dataloader9 as create_dataloader
