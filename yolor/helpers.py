@@ -1,13 +1,13 @@
-from yolor.models.models import Darknet
-import torch
-from yolor.utils.datasets import LoadStreams, LoadImages
 from yolor.utils.general import non_max_suppression, scale_coords
+from yolor.utils.download import attempt_download_from_hub
+from yolor.utils.datasets import LoadStreams, LoadImages
 from yolor.utils.plots import plot_one_box
+from yolor.models.models import Darknet
+from yolor.detect import load_classes
 import torch.backends.cudnn as cudnn
 import random
-from yolor.detect import load_classes
+import torch
 import cv2
-
 
 class Yolor:
     def __init__(
@@ -19,7 +19,6 @@ class Yolor:
         device: str = 'cuda:0'
     ):
         self.cfg = cfg
-        self.weights = weights
         self.imgsz = imgsz
         self.half = half
         self.webcam = False
@@ -30,10 +29,15 @@ class Yolor:
         self.save = True
         self.show = False
         self.save_path = 'yolor/data/output.jpg'
+        self.hf_model = True
+        
+        if self.hf_model:
+            self.weights = attempt_download_from_hub(weights)  
+        else:
+            self.weights = weights
         
         self.device = torch.device(device)
         self.model = self.load_model()
-        
         
     def load_model(self):
         model = Darknet(self.cfg, self.imgsz).cuda()

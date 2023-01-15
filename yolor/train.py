@@ -22,16 +22,16 @@ from tqdm import tqdm
 
 import yolor.test as test  # import test.py to get mAP after each epoch
 #from models.yolo import Model
-from models.models import *
-from utils.autoanchor import check_anchors
-from utils.datasets import create_dataloader
-from utils.general import labels_to_class_weights, increment_path, labels_to_image_weights, init_seeds, \
+from yolor.models.models import *
+from yolor.utils.autoanchor import check_anchors
+from yolor.utils.datasets import create_dataloader
+from yolor.utils.general import labels_to_class_weights, increment_path, labels_to_image_weights, init_seeds, \
     fitness, fitness_p, fitness_r, fitness_ap50, fitness_ap, fitness_f, strip_optimizer, get_latest_run,\
     check_dataset, check_file, check_git_status, check_img_size, print_mutation, set_logging
-from utils.google_utils import attempt_download
-from utils.loss import compute_loss
-from utils.plots import plot_images, plot_labels, plot_results, plot_evolution
-from utils.torch_utils import ModelEMA, select_device, intersect_dicts, torch_distributed_zero_first
+from yolor.utils.google_utils import attempt_download
+from yolor.utils.loss import compute_loss
+from yolor.utils.plots import plot_images, plot_labels, plot_results, plot_evolution
+from yolor.utils.torch_utils import ModelEMA, select_device, intersect_dicts, torch_distributed_zero_first
 
 logger = logging.getLogger(__name__)
 
